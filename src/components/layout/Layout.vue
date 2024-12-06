@@ -5,7 +5,9 @@
 <template>
     <div id="app-layout">
 
+        
         <slot v-if="$slots.header" name="header" />
+        
 
         <main>
             <slot name="content" />

@@ -18,6 +18,12 @@
     @apply h-screen;
 }
 
+.container {
+    max-width: 1448px;
+    padding: 0 24px;
+
+}
+
 body,html {
     background-color: #FAFAFC;
     font-family: 'Lato';
