@@ -1,19 +1,17 @@
-<script setup lang="ts">
-
-import Header from './layout-partials/Header.vue';
-import Footer from './layout-partials/Footer.vue';
-</script>
+<script setup lang="ts"></script>
 
 
 
 <template>
     <div id="app-layout">
 
-        <Header />
+        <slot v-if="$slots.header" name="header" />
 
+        <main>
             <slot name="content" />
+        </main>
 
-        <Footer />
+        <slot v-if="$slots.footer" name="footer" />
         
 
     </div>

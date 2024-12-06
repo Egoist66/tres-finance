@@ -4,9 +4,9 @@
 
 
 <template>
-    <div>
+    <footer>
 
-    </div>
+    </footer>
 </template>
 
 
