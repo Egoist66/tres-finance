@@ -4,45 +4,60 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
-    --color-primary: #1F1F1F;
-    --secondary-color: #5A5A5E;
+  --color-primary: #1f1f1f;
+  --secondary-color: #5a5a5e;
+  --active-filter-color: #D2D3D7;
 }
 
-
-
-
-
-#app, #app-layout {
-    @apply h-screen;
+#app,
+#app-layout {
+  @apply h-screen;
 }
 
-.container {
-    max-width: 1448px;
-    padding: 0 24px;
-
+body,
+html {
+  background-color: #fafafc;
+  font-family: 'Lato';
 }
 
-body,html {
-    background-color: #FAFAFC;
-    font-family: 'Lato';
+body {
+  overflow-x: hidden;
 }
 
 h1 {
-    color: var(--color-primary);
-    font-weight: 700;
-    font-size: 16px;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 16px;
 }
 
 h4 {
-    color: var(--color-primary);
-    font-weight: 700;
-    font-size: 18px;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 18px;
 }
 
 p {
-    color: var(--color-primary);
-    font-weight: 400;
-    font-size: 14px;
+  color: var(--color-primary);
+  font-weight: 400;
+  font-size: 14px;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 16px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgb(222, 234, 255);
+}
+
+.container {
+  max-width: 1448px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+

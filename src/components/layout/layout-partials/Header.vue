@@ -12,10 +12,8 @@ import FilterControls from '@/components/ui/FilterControls.vue';
        </div>
 
     </header>
-
-    <div class="container">
-        <FilterControls />
-    </div>
+    <FilterControls />
+       
 </template>
 
 

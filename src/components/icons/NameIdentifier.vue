@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-    defineProps<{text: string}>()
+    defineProps<{text?: string}>()
 
 </script>
 
@@ -17,7 +17,7 @@
       fill="#5A5A5E"
     />
   </svg>
-    Name/identifier
+   {{ text || 'Name/identifier' }}
   <svg
     width="16"
     height="16"
