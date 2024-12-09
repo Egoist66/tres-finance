@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Asset } from "@/types/wallet-entities-type";
 import WalletHeadInfo from "../icons/WalletHeadInfo.vue";
+import Solana from "../icons/Solana.vue";
+import NetWorks from "../icons/NetWorks.vue";
 
 defineProps<{
   walletName: string;
@@ -78,19 +80,19 @@ function formatCurrency(curr: number) {
         <tr class="wallet__table-info" :key="asset.id" v-for="asset in assets">
           <td class="p-4">
             <div class="flex gap-2 items-center">
-              <img
-                :src="asset.name === 'Solana' ? '/solana.svg' : '/networks.svg'"
-                alt="icon"
-              />
+              <component
+                :is="asset.name === 'SOLANA' ? Solana : NetWorks"
+              ></component>
+             
               <h4>{{ asset.name }}</h4>
             </div>
           </td>
           <td class="p-4">
             <div class="flex gap-2 items-center">
-              <img
-                :src="asset.asset.network === 'SOLANA' ? '/solana.svg' : '/networks.svg'"
-                alt="icon"
-              />
+              <component
+                :is="asset.asset.network === 'SOLANA' ? Solana : NetWorks"
+              ></component>
+             
               <h4>{{ asset.asset.network }}</h4>
             </div>
           </td>

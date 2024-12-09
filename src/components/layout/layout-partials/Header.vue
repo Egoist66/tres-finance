@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Vector from '@/components/icons/Vector.vue';
 import FilterControls from '@/components/ui/FilterControls.vue';
 
 
@@ -18,7 +19,7 @@ import FilterControls from '@/components/ui/FilterControls.vue';
         <div class="mb-5">
         
             <button class="flex mb-5 gap-2 items-center">
-                <img src="/vector.svg" alt="">
+                <Vector />
                 Expand all
             </button>
         </div>
