@@ -18,15 +18,23 @@ function formatCurrency(curr: number) {
 </script>
 
 <template>
-  <div class="wallet p-3">
-    <div class="wallet__head">
-      <div class="wallet__head-info">
-        <WalletHeadInfo />
 
-        <div class="flex justify-between items-center">
+
+  <div class="wallet bg-white p-4 mb-2 rounded">
+    <div class="wallet__head">
+      <div class="wallet__head-info pb-4">
+        <div class="flex justify-between pb-4 items-center">
           <div class="wallet__head-wrapper-text">
-            <h4 class="wallet__title">{{ walletName }}</h4>
-            <p class="wallet__hash">{{ walletIdentifier }}</p>
+            <div class="flex gap-2">
+              <WalletHeadInfo />
+              <h4 class="wallet__title">{{ walletName }}</h4>
+            </div>
+
+            <div>
+              <p class="wallet__hash">
+                <span :style="{ paddingRight: '5px' }">#</span>{{ walletIdentifier }}
+              </p>
+            </div>
           </div>
 
           <div>
@@ -34,84 +42,79 @@ function formatCurrency(curr: number) {
           </div>
         </div>
       </div>
-      <div class="wallet__head-data flex gap-3 items-center">
+      <div class="wallet__head-data pb-4 flex gap-3 items-center">
         <p class="wallet__data">Added: {{ new Date(walletData).toLocaleString() }}</p>
+        <div>
+          <img src="/stick.svg" alt="stick" />
+        </div>
         <p class="wallet__assets">{{ assets.length }} Assets</p>
       </div>
     </div>
 
-    <div class="wallet__body open">
-      <table class="wallet__table w-full border-collapse border border-gray-400">
-        <tr>
+    <div class="wallet__body open overflow-x-auto">
+      <table class="wallet__table min-w-full border-collapse border">
+        <tr class="wallet__table-header">
           <th class="text-left p-4">Asset</th>
-          <th class="text-left p-4">Network</th>
-          <th class="text-left p-4">
+          <th :style="{borderLeft: '1px solid #DEEAFF', borderRight: '1px solid #DEEAFF'}" class="text-left p-4">Network</th>
+          <th class="text-left p-4 flex items-center">
             Current balance
-            <button
+            <div
               class="wallet__table-icon ml-2 text-gray-500 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="w-4 h-4"
-              >
-                <path
-                  d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0 -20Zm0 3a7 7 0 1 0 0 14 7 7 0 0 0 0 -14Zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0 -6Zm0 2.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0 -3Zm0 3a1 1 0 1 0 0 2 1 1 0 0 0 0 -2Zm0 2.5a.5.5 0 1 1 0 1 .5.5 0 0 1 0 -1Zm0 1a.5.5 0 1 1 0 1 .5.5 0 0 1 0 -1Zm0 1.5a.5.5 0 1 1 0 1 .5.5 0 0 1 0 -1Zm0 1a.5.5 0 1 1 0 1 .5.5 0 0 1 0 -1Zm0 1.5a.5.5 0 1 1 0 1 .5.5 0 0 1 0 -1Zm0 1a.5.5 0 1 1 0 1 .5.5 0 0 1 0 -1Zm0 1a.5.5 0 1 1 0 1 .5.5 0 0 1 0 -1Z"
-                ></path>
-              </svg>
-            </button>
+              <img
+                :style="{ width: '12px', height: '12px' }"
+                src="/warn.svg"
+                alt="warn"
+              />
+            </div>
           </th>
         </tr>
 
-        <tr :key="asset.id" v-for="asset in assets">
-          <td class="p-4 border-b border-gray-400">
-            <!-- <div class="wallet__table-wrapper-icon">
-              <svg></svg>
-            </div> -->
-            {{ asset.name }}
+        <tr class="wallet__table-info" :key="asset.id" v-for="asset in assets">
+          <td class="p-4">
+          
+            <div  class="flex gap-2 items-center">
+              <img :src="asset.name === 'Solana' ? '/solana.svg' : '/networks.svg'" alt="icon">
+              <h4>{{ asset.name }}</h4>
+            </div>
           </td>
-          <td class="p-4  border-b border-gray-400">
-            <!-- <div class="wallet__table-wrapper-icon">
-              <svg></svg>
-            </div> -->
-            {{ asset.asset.network }}
+          <td class="p-4">
+         
+           <div class="flex gap-2 items-center">
+              <img :src="asset.asset.network === 'SOLANA' ? '/solana.svg' : '/networks.svg'" alt="icon">
+            <h4> {{ asset.asset.network}}</h4>
+           </div>
           </td>
-          <td class="p-4 border-b border-gray-400">
-            <p>{{ formatCurrency(+asset.assetUsdValue?.value!) }}</p>
-            <p>
-              <button
-                class="wallet__table-icon ml-2 text-gray-500 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
-              ></button>
-              {{ formatCurrency(+asset.assetAmount) }}
+          <td class="p-4">
+            <p>{{ formatCurrency(+asset.assetUsdValue?.value!) }} {{ asset.asset.symbol }}</p>
+            <p :style="{letterSpacing: '1px', color: '#8E8F98'}" class="flex gap-1">
+              <img src="/usd.svg" alt="usd">
+              {{ formatCurrency(+asset.assetAmount).replace('$', '') }} USD
             </p>
           </td>
         </tr>
-        <tr class="wallet__table-info">
+        <tr class="wallet__table-info bg-[#EFF4FF]">
           <td class="p-4">
-            {{ assets.length }} assets
-            <button
-              class="wallet__table-icon ml-2 summary text-gray-500 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
-            >
-              Summary
-            </button>
-          </td>
-          <td class="p-4">
-            <!-- <div class="wallet__table-wrapper-icon">
-              <svg></svg>
-            </div> -->
-          </td>
-          <td class="p-4">
-            <h3>
+            <div class="flex items-center">
+              <h5>{{ assets.length }} assets</h5>
               <button
-                class="wallet__table-icon ml-2 text-gray-500 hover:text-gray-700 focus:text-gray-700 transition duration-150 ease-in-out"
-              ></button>
-              {{ formatCurrency(walletTotalUsdValue) }}
+                class="wallet__table-icon ml-2 summary bg-[#DEEAFF] transition duration-150 ease-in-out"
+              >
+                Summary
+              </button>
+            </div>
+          </td>
+          <td class="p-4">
+          
+          </td>
+          <td class="p-4">
+            <div class="flex items-center gap-1">
+              <img src="/black-usd.svg" alt="black-usd">
+              <h3>
+              
+                {{ formatCurrency(walletTotalUsdValue) }}
             </h3>
+            </div>
           </td>
         </tr>
       </table>
@@ -120,14 +123,49 @@ function formatCurrency(curr: number) {
 </template>
 
 <style scoped>
+.wallet__head-info > div {
+  border-bottom: 1px solid var(--third-color);
+}
 .wallet__assets {
   background-color: #f0f1f5;
-  padding: 3px;
+  padding: 4px 8px;
+  border-radius: 5px;
 }
 
-.summary {
-  background-color: #f0f1f5;
+.wallet__table-info {
+  border-bottom: 1px solid var(--third-color);
+}
+
+th {
+  text-transform: uppercase;
+  color: var(--fourth-color);
+  font-weight: 400;
+  font-size: 12px;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+td {
+  border-right: 1px solid var(--third-color);
+}
+
+.wallet__table-header {
+  border-bottom: 1px solid var(--third-color);
+
+}
+.wallet__hash {
+  color: var(--fourth-color);
+}
+
+button.summary {
   padding: 5px;
   border-radius: 4px;
+  font-weight: 400;
+}
+
+table {
+  border-color: var(--third-color);
 }
 </style>

@@ -7,6 +7,9 @@
 :root {
   --color-primary: #1f1f1f;
   --secondary-color: #5a5a5e;
+  --third-color: #DEEAFF;
+  --fourth-color: #8E8F98;
+  --fifth-color: #EFF4FF;
   --active-filter-color: #D2D3D7;
 }
 
@@ -35,6 +38,12 @@ h4 {
   color: var(--color-primary);
   font-weight: 700;
   font-size: 18px;
+}
+
+h5 {
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 16px;
 }
 
 p {

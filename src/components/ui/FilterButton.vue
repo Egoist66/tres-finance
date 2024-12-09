@@ -9,7 +9,7 @@ const { isActive = false } = defineProps<{
 </script>
 
 <template>
-  <button :class="{ 'filter__button--active': isActive }" class="filter__button">
+  <button  :class="{ 'filter__button--active': isActive }" class="filter__button">
     <slot name="default"></slot>
   </button>
 </template>
@@ -28,6 +28,8 @@ const { isActive = false } = defineProps<{
   font-size: 14px;
   line-height: 21px;
 }
+
+
 
 .filter__button--active {
   background-color: #D2D3D7;

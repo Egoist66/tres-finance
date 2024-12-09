@@ -17,6 +17,7 @@ export const useWallets = () => {
             await delay(500)
 
             const {data} = await axios.get<Wallets>('https://e58d858f90f2c9de.mokky.dev/wallets')
+        
             if(data.length){
                 setWallets(data)
                 setSuccess()

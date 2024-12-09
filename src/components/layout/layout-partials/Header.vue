@@ -13,12 +13,26 @@ import FilterControls from '@/components/ui/FilterControls.vue';
 
     </header>
     <FilterControls />
+
+    <div class="container">
+        <div class="flex mb-5 items-center gap-2">
+            <div>
+                <img src="/vector.svg" alt="">
+            </div>
+            <button>Expand all</button>
+        </div>
+    </div>
+ 
        
 </template>
 
 
 
 <style scoped>
+
+button {
+    color: var(--secondary-color)
+}
 
 .header {
     padding: 16px 0px;

@@ -6,7 +6,7 @@ export interface Wallet {
   name: string
   createdAt: string
   totalUsdValue: number
-  assets: Asset[]
+  assets: Array<Asset>
 }
 
 export interface Asset {

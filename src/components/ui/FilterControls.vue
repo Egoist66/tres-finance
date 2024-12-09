@@ -38,15 +38,18 @@ const filters: FilterProps[] = [
 <template>
   <div class="filters">
     <div class="container">
-      <div :key="filter.id" v-for="filter in filters" class="filter">
-        <FilterButton
-          @click="filter.isActive.value = !filter.isActive.value"
-          :isActive="filter.isActive?.value"
-          :name="filter.name"
+      <template :key="filter.id" v-for="filter in filters">
+        <div class="filter"
         >
-          <component :is="filter.icon" />
-        </FilterButton>
-      </div>
+          <FilterButton
+            @click="filter.isActive.value = !filter.isActive.value"
+            :isActive="filter.isActive?.value"
+            :name="filter.name"
+          >
+            <component :is="filter.icon" />
+          </FilterButton>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -55,8 +58,21 @@ const filters: FilterProps[] = [
 .filters {
   margin-bottom: 20px;
 }
+
+@media (max-width: 500px) {
+
+  .filter:nth-child(1) {
+    margin-bottom: 8px;
+  }
+  .filter:nth-child(2) {
+    margin-bottom: 8px;
+  }
+
+}
+
 .filters .container {
   display: flex;
+  flex-wrap: wrap;
   -moz-column-gap: 8px;
   column-gap: 8px;
 }
