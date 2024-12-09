@@ -3,6 +3,7 @@ import { Statuses, useStatuses } from "./common/useStatuses"
 import axios from "axios"
 import type { Wallets } from "@/types/wallet-entities-type"
 import { useWalletsStore } from "@/stores/wallets.store"
+import { WalletsAPIService } from "@/service/wallets-api"
 
 /**
  * A hook for fetching wallets.
@@ -21,10 +22,9 @@ export const useWallets = () => {
             setLoading()
             await delay(500)
 
-            const {data} = await axios.get<Wallets>('https://e58d858f90f2c9de.mokky.dev/wallets')
-        
-            if(data.length){
-                setWallets(data)
+            const wallets = await WalletsAPIService.getWallets()
+            if(wallets.length){
+                setWallets(wallets)
                 setSuccess()
             }
         }
