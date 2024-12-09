@@ -3,6 +3,7 @@ import type { Asset } from "@/types/wallet-entities-type";
 import WalletHeadInfo from "../icons/WalletHeadInfo.vue";
 import Solana from "../icons/Solana.vue";
 import NetWorks from "../icons/NetWorks.vue";
+import { formatCurrency } from "@/utils/format-currency";
 
 defineProps<{
   walletName: string;
@@ -12,11 +13,7 @@ defineProps<{
   assets: Asset[];
 }>();
 
-function formatCurrency(curr: number) {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
-    curr
-  );
-}
+
 </script>
 
 <template>
@@ -38,7 +35,7 @@ function formatCurrency(curr: number) {
           </div>
 
           <div>
-            <h4>{{ formatCurrency(walletTotalUsdValue) }}</h4>
+            <h4>{{ formatCurrency(walletTotalUsdValue, "USD") }}</h4>
           </div>
         </div>
       </div>
@@ -98,11 +95,11 @@ function formatCurrency(curr: number) {
           </td>
           <td class="p-4">
             <p>
-              {{ formatCurrency(+asset.assetUsdValue?.value!) }} {{ asset.asset.symbol }}
+              {{ formatCurrency(+asset.assetUsdValue?.value!, "USD") }} {{ asset.asset.symbol }}
             </p>
             <p :style="{ letterSpacing: '1px', color: '#8E8F98' }" class="flex gap-1">
               <img src="/usd.svg" alt="usd" />
-              {{ formatCurrency(+asset.assetAmount).replace("$", "") }} USD
+              {{ formatCurrency(+asset.assetAmount, "USD").replace("$", "") }} USD
             </p>
           </td>
         </tr>
@@ -122,7 +119,7 @@ function formatCurrency(curr: number) {
             <div class="flex items-center gap-1">
               <img src="/black-usd.svg" alt="black-usd" />
               <h3>
-                {{ formatCurrency(walletTotalUsdValue) }}
+                {{ formatCurrency(walletTotalUsdValue, "USD") }}
               </h3>
             </div>
           </td>
