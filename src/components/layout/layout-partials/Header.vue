@@ -15,11 +15,12 @@ import FilterControls from '@/components/ui/FilterControls.vue';
     <FilterControls />
 
     <div class="container">
-        <div class="flex mb-5 items-center gap-2">
-            <div>
+        <div class="mb-5">
+        
+            <button class="flex mb-5 gap-2 items-center">
                 <img src="/vector.svg" alt="">
-            </div>
-            <button>Expand all</button>
+                Expand all
+            </button>
         </div>
     </div>
  

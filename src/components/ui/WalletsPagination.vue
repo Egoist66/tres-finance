@@ -20,8 +20,8 @@ const __curentPage = ref<number>(props.currentPage);
 
   
   <div class="container">
-    <div class="flex justify-between items-center">
-      <div class="pagination flex items-center  gap-2 pb-3">
+    <div class="flex justify-between items-center  pb-3">
+      <div class="pagination flex items-center  gap-2">
         <div>
           <p>View</p>
         </div>
