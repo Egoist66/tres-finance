@@ -15,7 +15,12 @@ import Footer from "./components/layout/layout-partials/Footer.vue";
     </template>
 
     <template #content>
-      <RouterView />
+      <Suspense :timeout="1000">
+        <template #fallback> Loading... </template>
+        <RouterView #default="{ Component }">
+          <component :is="Component" />
+        </RouterView>
+      </Suspense>
     </template>
 
     <template #footer>

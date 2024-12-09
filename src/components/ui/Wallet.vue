@@ -23,7 +23,7 @@ function formatCurrency(curr: number) {
   <div class="wallet bg-white p-4 mb-2 rounded">
     <div class="wallet__head">
       <div class="wallet__head-info pb-4">
-        <div class="flex justify-between pb-4 items-center">
+        <div class="flex justify-between flex-wrap pb-4 items-center">
           <div class="wallet__head-wrapper-text">
             <div class="flex gap-2">
               <WalletHeadInfo />
@@ -130,6 +130,10 @@ function formatCurrency(curr: number) {
   background-color: #f0f1f5;
   padding: 4px 8px;
   border-radius: 5px;
+}
+
+p {
+  word-break: break-all;
 }
 
 .wallet__table-info {
