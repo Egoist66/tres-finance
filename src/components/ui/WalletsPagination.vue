@@ -22,24 +22,19 @@ const __curentPage = ref<number>(props.currentPage);
   <div class="container">
     <div class="flex justify-between items-center  pb-3">
       <div class="pagination flex items-center  gap-2">
-        <div>
-          <p>View</p>
-        </div>
-  
-        <div>
-          <select
-            @change="(e: Event) => $emit('goToPage', __curentPage, paginatedData)"
-            v-model="__curentPage"
-          >
-            <option v-for="page in paginatedData.totalPages" :key="page" :value="page">
-              {{ page }}
-            </option>
-          </select>
-        </div>
-  
-        <div>
-          <p>per page</p>
-        </div>
+       
+        <p>View</p>
+        <select
+          @change="(e: Event) => $emit('goToPage', __curentPage, paginatedData)"
+          v-model="__curentPage"
+        >
+          <option v-for="page in paginatedData.totalPages" :key="page" :value="page">
+            {{ page }}
+          </option>
+        </select>
+      
+        <p>per page</p>
+        
       </div>
 
       <p>Showing {{ paginatedData.items.length }} of {{ paginatedData.totalPages }}</p>
