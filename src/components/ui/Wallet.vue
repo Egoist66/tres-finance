@@ -4,6 +4,7 @@ import WalletHeadInfo from "../icons/WalletHeadInfo.vue";
 import Solana from "../icons/Solana.vue";
 import NetWorks from "../icons/NetWorks.vue";
 import { formatCurrency } from "@/utils/format-currency";
+import { ref } from "vue";
 
 defineProps<{
   walletName: string;
@@ -13,14 +14,16 @@ defineProps<{
   assets: Asset[];
 }>();
 
+const isToggledWallet = ref<boolean>(false);
+
 
 </script>
 
 <template>
   <div class="wallet bg-white p-4 mb-2 rounded">
     <div class="wallet__head mb-4">
-      <div class="wallet__head-info pb-4">
-        <div class="flex justify-between flex-wrap pb-4 items-center">
+      <div @click="isToggledWallet = !isToggledWallet" class="wallet__head-info cursor-pointer pb-4">
+        <div  class="flex justify-between flex-wrap pb-4 items-center">
           <div class="wallet__head-wrapper-text">
             <div class="flex gap-2">
               <WalletHeadInfo />
@@ -48,7 +51,7 @@ defineProps<{
       </div>
     </div>
 
-    <div class="wallet__body open overflow-x-auto">
+    <div v-if="isToggledWallet" class="wallet__body open overflow-x-auto">
       <table class="wallet__table min-w-full border-collapse border">
         <tr class="wallet__table-header">
           <th class="text-left p-4">Asset</th>
