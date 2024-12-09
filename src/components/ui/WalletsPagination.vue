@@ -41,7 +41,7 @@ defineExpose({
         <p>per page</p>
       </div>
 
-      <p>Showing {{ paginatedData.items.length }} of {{ paginatedData.totalPages }}</p>
+      <p>Showing {{ selectedPageSize }} out of {{ paginatedData.items.length }} results</p>
 
       <div v-if="paginatedData.totalPages" class="pagination flex items-baseline gap-2">
         <button
