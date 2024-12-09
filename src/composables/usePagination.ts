@@ -31,7 +31,7 @@ export interface PaginatedData<T> {
  */
 export const usePagination = () => {
 
-    const pageSize = ref<number>(3)
+    const pageSize = ref<number[]>([3, 5, 10, 50]);
     const currentPage = ref<number>(1);
 
 
