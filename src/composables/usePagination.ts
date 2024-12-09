@@ -40,10 +40,16 @@ export const usePagination = () => {
 
     }
 
+    const  goToPage = (page: number, paginatedData: any) => {
+        if (page < 1 || page > paginatedData.value.totalPages) return;
+        currentPage.value = page;
+    }
+
     return {
         items,
         currentPage,
         pageSize,
+        goToPage,
         paginate
     }
 }
