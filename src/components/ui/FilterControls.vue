@@ -1,38 +1,9 @@
 <script setup lang="ts">
-import { ref, type Component, type Ref } from "vue";
-import AssetsIdentifier from "../icons/AssetsIdentifier.vue";
-import NameIdentifier from "../icons/NameIdentifier.vue";
-import NetworkIdentifier from "../icons/NetworkIdentifier.vue";
+
 import FilterButton from "./FilterButton.vue";
+import { useFilters } from "@/composables/useFilters";
 
-type FilterProps = {
-  name: string;
-  id: string;
-  icon: Component;
-  isActive: Ref<boolean>;
-};
-
-
-const filters: FilterProps[] = [
-  {
-    name: "Name/identifier",
-    id: "name",
-    icon: NameIdentifier,
-    isActive: ref<boolean>(false),
-  },
-  {
-    name: "Assets identifier",
-    id: "assets",
-    icon: AssetsIdentifier,
-    isActive: ref<boolean>(false),
-  },
-  {
-    name: "Network identifier",
-    id: "network",
-    icon: NetworkIdentifier,
-    isActive: ref<boolean>(false),
-  },
-];
+const {filters} = useFilters()
 </script>
 
 <template>
