@@ -4,6 +4,11 @@ import axios from "axios"
 import type { Wallets } from "@/types/wallet-entities-type"
 import { useWalletsStore } from "@/stores/wallets.store"
 
+/**
+ * A hook for fetching wallets.
+ *
+ * @return {{fetchWallets: () => Promise<void>, statuses: Ref<Statuses>}} An object containing a function to fetch wallets and a ref to the current status.
+ */
 export const useWallets = () => {
 
     const {setLoading, setStatus, setError, setSuccess, statuses} = useStatuses()
