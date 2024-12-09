@@ -29,7 +29,7 @@ defineExpose({
 
 <template>
   <div class="container">
-    <div class="flex justify-between items-center pb-3">
+    <div class="flex justify-between flex-wrap items-center pb-3">
       <div class="pagination flex items-center gap-2">
         <p>View</p>
         <select @change="onChangePageSize($event)">
@@ -43,7 +43,7 @@ defineExpose({
 
       <p>Showing {{ selectedPageSize }} out of {{ paginatedData.items.length }} results</p>
 
-      <div v-if="paginatedData.totalPages" class="pagination flex items-baseline gap-2">
+      <div v-if="paginatedData.totalPages" class="pagination flex flex-wrap items-baseline gap-2">
         <button
           @click="$emit('goToPage', props.currentPage - 1)"
           :disabled="props.currentPage === 1"
