@@ -59,7 +59,7 @@ const filters: FilterProps[] = [
   margin-bottom: 20px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 520px) {
 
   .filter:nth-child(1) {
     margin-bottom: 8px;
