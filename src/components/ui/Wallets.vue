@@ -4,7 +4,7 @@ import Wallet from './Wallet.vue';
 
 
 
-    defineProps<{wallets: Wallets}>()
+  defineProps<{wallets: Wallets}>()
 
 
 </script>

@@ -4,7 +4,9 @@ import WalletHeadInfo from "../icons/WalletHeadInfo.vue";
 import Solana from "../icons/Solana.vue";
 import NetWorks from "../icons/NetWorks.vue";
 import { formatCurrency } from "@/utils/format-currency";
-import { ref } from "vue";
+import { inject, ref, watchEffect } from "vue";
+import { storeToRefs } from "pinia";
+import { useAppStore } from "@/stores/app.store";
 
 defineProps<{
   walletName: string;
@@ -15,12 +17,13 @@ defineProps<{
 }>();
 
 const isToggledWallet = ref<boolean>(false);
-
+const {isExpandedAll} = storeToRefs(useAppStore())
 
 </script>
 
 <template>
   <div class="wallet bg-white p-4 mb-2 rounded">
+
     <div class="wallet__head mb-4">
       <div @click="isToggledWallet = !isToggledWallet" class="wallet__head-info cursor-pointer pb-4">
         <div  class="flex justify-between flex-wrap pb-4 items-center">
@@ -51,7 +54,7 @@ const isToggledWallet = ref<boolean>(false);
       </div>
     </div>
 
-    <div v-if="isToggledWallet" class="wallet__body open overflow-x-auto">
+    <div v-if="isToggledWallet || isExpandedAll" class="wallet__body open overflow-x-auto">
       <table class="wallet__table min-w-full border-collapse border">
         <tr class="wallet__table-header">
           <th class="text-left p-4">Asset</th>
@@ -133,6 +136,7 @@ const isToggledWallet = ref<boolean>(false);
 </template>
 
 <style scoped>
+
 .wallet__head-info > div {
   border-bottom: 1px solid var(--third-color);
 }
